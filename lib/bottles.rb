@@ -19,16 +19,19 @@ class Bottles
         1 bottle of beer on the wall, 1 bottle of beer.
         Take it down and pass it around, no more bottles of beer on the wall.
       VERSE
-    when 2
-      <<~VERSE
-        2 bottles of beer on the wall, 2 bottles of beer.
-        Take one down and pass it around, 1 bottle of beer on the wall.
-      VERSE
     else
       <<~VERSE
         #{count} bottles of beer on the wall, #{count} bottles of beer.
-        Take one down and pass it around, #{count - 1} bottles of beer on the wall.
+        Take one down and pass it around, #{count - 1} #{container(count - 1)} of beer on the wall.
       VERSE
+    end
+  end
+
+  def container(amount)
+    if amount == 1
+      "bottle"
+    else
+      "bottles"
     end
   end
 end
