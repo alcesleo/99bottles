@@ -8,18 +8,10 @@ class Bottles
   end
 
   def verse(count)
-    case count
-    when 0
-      <<~VERSE
-        No more bottles of beer on the wall, no more bottles of beer.
-        Go to the store and buy some more, 99 bottles of beer on the wall.
-      VERSE
-    else
-      <<~VERSE
-        #{count} #{container(count)} of beer on the wall, #{count} #{container(count)} of beer.
-        Take #{pronoun(count)} down and pass it around, #{quantity(count - 1)} #{container(count - 1)} of beer on the wall.
-      VERSE
-    end
+    <<~VERSE
+      #{quantity(count).capitalize} #{container(count)} of beer on the wall, #{quantity(count)} #{container(count)} of beer.
+      #{action(count)}, #{quantity(next_amount(count))} #{container(next_amount(count))} of beer on the wall.
+    VERSE
   end
 
   def container(amount)
@@ -43,6 +35,22 @@ class Bottles
       "no more"
     else
       amount.to_s
+    end
+  end
+
+  def next_amount(amount)
+    if amount == 0
+      99
+    else
+      amount - 1
+    end
+  end
+
+  def action(amount)
+    if amount == 0
+      "Go to the store and buy some more"
+    else
+      "Take #{pronoun(amount)} down and pass it around"
     end
   end
 end
