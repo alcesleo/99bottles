@@ -8,10 +8,10 @@ class Bottles
   end
 
   def verse(count)
-    <<~VERSE
-      #{quantity(count).capitalize} #{container(count)} of beer on the wall, #{quantity(count)} #{container(count)} of beer.
-      #{action(count)}, #{quantity(next_amount(count))} #{container(next_amount(count))} of beer on the wall.
-    VERSE
+    "#{quantity(count).capitalize} #{container(count)} of beer on the wall, " +
+    "#{quantity(count)} #{container(count)} of beer.\n" +
+    "#{action(count)}, " +
+    "#{quantity(next_amount(count))} #{container(next_amount(count))} of beer on the wall.\n"
   end
 
   def container(amount)
