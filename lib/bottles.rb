@@ -1,4 +1,54 @@
 class Bottles
+  class BottleCount
+    attr_reader :number
+    private :number
+
+    def initialize(number)
+      @number = number
+    end
+
+    def container
+      if number == 1
+        "bottle"
+      else
+        "bottles"
+      end
+    end
+
+    def pronoun
+      if number == 1
+        "it"
+      else
+        "one"
+      end
+    end
+
+    def quantity
+      if number == 0
+        "no more"
+      else
+        number.to_s
+      end
+    end
+
+    def next_amount
+      if number == 0
+        99
+      else
+        number - 1
+      end
+    end
+
+    def action
+      if number == 0
+        "Go to the store and buy some more"
+      else
+        "Take #{pronoun} down and pass it around"
+      end
+    end
+  end
+  private_constant :BottleCount
+
   def song
     verses(99, 0)
   end
@@ -15,42 +65,22 @@ class Bottles
   end
 
   def container(amount)
-    if amount == 1
-      "bottle"
-    else
-      "bottles"
-    end
+    BottleCount.new(amount).container
   end
 
   def pronoun(amount)
-    if amount == 1
-      "it"
-    else
-      "one"
-    end
+    BottleCount.new(amount).pronoun
   end
 
   def quantity(amount)
-    if amount == 0
-      "no more"
-    else
-      amount.to_s
-    end
+    BottleCount.new(amount).quantity
   end
 
   def next_amount(amount)
-    if amount == 0
-      99
-    else
-      amount - 1
-    end
+    BottleCount.new(amount).next_amount
   end
 
   def action(amount)
-    if amount == 0
-      "Go to the store and buy some more"
-    else
-      "Take #{pronoun(amount)} down and pass it around"
-    end
+    BottleCount.new(amount).action
   end
 end
