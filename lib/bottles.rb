@@ -4,7 +4,7 @@ class Bottles
   end
 
   def verses(from, to)
-    (to..from).to_a.reverse.map { |count| verse(count) }.join("\n")
+    from.downto(to).map { |count| verse(count) }.join("\n")
   end
 
   def verse(count)
