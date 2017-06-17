@@ -58,29 +58,12 @@ class Bottles
   end
 
   def verse(count)
-    "#{quantity(count).capitalize} #{container(count)} of beer on the wall, " +
-    "#{quantity(count)} #{container(count)} of beer.\n" +
-    "#{action(count)}, " +
-    "#{quantity(succ(count))} #{container(succ(count))} of beer on the wall.\n"
-  end
+    bottle_count = BottleCount.new(count)
+    next_bottle_count = BottleCount.new(bottle_count.succ)
 
-  def container(amount)
-    BottleCount.new(amount).container
-  end
-
-  def pronoun(amount)
-    BottleCount.new(amount).pronoun
-  end
-
-  def quantity(amount)
-    BottleCount.new(amount).quantity
-  end
-
-  def succ(amount)
-    BottleCount.new(amount).succ
-  end
-
-  def action(amount)
-    BottleCount.new(amount).action
+    "#{bottle_count.quantity.capitalize} #{bottle_count.container} of beer on the wall, " +
+    "#{bottle_count.quantity} #{bottle_count.container} of beer.\n" +
+    "#{bottle_count.action}, " +
+    "#{next_bottle_count.quantity} #{next_bottle_count.container} of beer on the wall.\n"
   end
 end
