@@ -31,7 +31,7 @@ class Bottles
       end
     end
 
-    def next_amount
+    def succ
       if number == 0
         99
       else
@@ -61,7 +61,7 @@ class Bottles
     "#{quantity(count).capitalize} #{container(count)} of beer on the wall, " +
     "#{quantity(count)} #{container(count)} of beer.\n" +
     "#{action(count)}, " +
-    "#{quantity(next_amount(count))} #{container(next_amount(count))} of beer on the wall.\n"
+    "#{quantity(succ(count))} #{container(succ(count))} of beer on the wall.\n"
   end
 
   def container(amount)
@@ -76,8 +76,8 @@ class Bottles
     BottleCount.new(amount).quantity
   end
 
-  def next_amount(amount)
-    BottleCount.new(amount).next_amount
+  def succ(amount)
+    BottleCount.new(amount).succ
   end
 
   def action(amount)
