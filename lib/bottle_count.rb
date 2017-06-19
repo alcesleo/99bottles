@@ -3,6 +3,14 @@ class Bottles
     attr_reader :number
     private :number
 
+    def self.for(count)
+      case count
+      when 0 then BottleCount0.new(count)
+      when 1 then BottleCount1.new(count)
+      else BottleCount.new(count)
+      end
+    end
+
     def initialize(number)
       @number = number
     end
@@ -28,7 +36,7 @@ class Bottles
     end
 
     def succ
-      number - 1
+      self.class.for(number - 1)
     end
   end
   private_constant :BottleCount
@@ -43,7 +51,7 @@ class Bottles
     end
 
     def succ
-      99
+      self.class.for(99)
     end
   end
   private_constant :BottleCount0
