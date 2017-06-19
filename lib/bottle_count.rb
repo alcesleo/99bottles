@@ -12,44 +12,50 @@ class Bottles
     end
 
     def container
-      if number == 1
-        "bottle"
-      else
-        "bottles"
-      end
-    end
-
-    def pronoun
-      if number == 1
-        "it"
-      else
-        "one"
-      end
+      "bottles"
     end
 
     def quantity
-      if number == 0
-        "no more"
-      else
-        number.to_s
-      end
-    end
-
-    def succ
-      if number == 0
-        99
-      else
-        number - 1
-      end
+      number.to_s
     end
 
     def action
-      if number == 0
-        "Go to the store and buy some more"
-      else
-        "Take #{pronoun} down and pass it around"
-      end
+      "Take #{pronoun} down and pass it around"
+    end
+
+    def pronoun
+      "one"
+    end
+
+    def succ
+      number - 1
     end
   end
   private_constant :BottleCount
+
+  class BottleCount0 < BottleCount
+    def quantity
+      "no more"
+    end
+
+    def action
+      "Go to the store and buy some more"
+    end
+
+    def succ
+      99
+    end
+  end
+  private_constant :BottleCount0
+
+  class BottleCount1 < BottleCount
+    def container
+      "bottle"
+    end
+
+    def pronoun
+      "it"
+    end
+  end
+  private_constant :BottleCount1
 end
