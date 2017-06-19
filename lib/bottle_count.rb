@@ -7,6 +7,7 @@ class Bottles
       case count
       when 0 then BottleCount0.new(count)
       when 1 then BottleCount1.new(count)
+      when 6 then BottleCount6.new(count)
       else BottleCount.new(count)
       end
     end
@@ -66,4 +67,15 @@ class Bottles
     end
   end
   private_constant :BottleCount1
+
+  class BottleCount6 < BottleCount
+    def quantity
+      "1"
+    end
+
+    def container
+      "six-pack"
+    end
+  end
+  private_constant :BottleCount6
 end
